@@ -29,6 +29,11 @@ jobs:
       - name: Build
         run: npm run build
         working-directory: bonus/EPyTodo
+      - name: Upload build
+        uses: actions/upload-artifact@v4
+        with:
+          name: github-pages
+          path: bonus/EPyTodo/dist/
       
   deploy:
     environment:
@@ -37,6 +42,10 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     steps:
+      - name: Download build
+        uses: actions/download-artifact@v4
+        with:
+          name: github-pages
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
