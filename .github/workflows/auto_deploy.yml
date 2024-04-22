@@ -23,12 +23,12 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: '14'
-      - name: Workdir changed
-        run: cd bonus/EPyTodo
       - name: Install dependencies
         run: npm install
+        working-directory: bonus/EPyTodo
       - name: Build
         run: npm run build
+        working-directory: bonus/EPyTodo
       
   deploy:
     environment:
