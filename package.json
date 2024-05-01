@@ -1,0 +1,27 @@
+{
+  "name": "epytodo",
+  "version": "1.0.0",
+  "description": "```\r | - - . env\r | - - package . json\r `-- src\r      | - - config\r      |       `-- db . js\r      | - - index . js\r      | - - middleware\r      |         |- - auth . js\r      |         `-- notFound . js\r      ` - - routes\r               | - - auth\r               |       `-- auth . js\r               | - - todos\r               |       |- - todos . js\r               |       `- - todos . query . js\r               ` - - user\r                    | - - user . js\r                    ` - - user . query . js\r ```",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Elias & Brahim",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "body-parser": "^1.20.2",
+    "express": "^4.19.2",
+    "jsonwebtoken": "^9.0.2"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/EpitechPromo2028/B-WEB-200-MPL-2-1-epytodo-brahim.benali.git"
+  },
+  "bugs": {
+    "url": "https://github.com/EpitechPromo2028/B-WEB-200-MPL-2-1-epytodo-brahim.benali/issues"
+  },
+  "homepage": "https://github.com/EpitechPromo2028/B-WEB-200-MPL-2-1-epytodo-brahim.benali#readme"
+}
