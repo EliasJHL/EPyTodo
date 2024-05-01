@@ -1,10 +1,14 @@
 <script setup>
-defineProps({
-  msg: {
-    type: String,
-    required: true
-  }
-})
+import { ref } from 'vue';
+import { useToast } from 'vue-toast-notification';
+
+const toast = useToast();
+
+const msg = ref('Hello World');
+
+const showToast = () => {
+  toast.success('Hello world!');
+};
 </script>
 
 <template>
@@ -15,6 +19,7 @@ defineProps({
       <a href="https://vitejs.dev/" target="_blank" rel="noopener">Vite</a> +
       <a href="https://vuejs.org/" target="_blank" rel="noopener">Vue 3</a>.
     </h3>
+    <button @click="showToast">Show Toast</button>
   </div>
 </template>
 
