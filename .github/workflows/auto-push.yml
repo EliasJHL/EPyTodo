@@ -8,6 +8,9 @@ on:
     branches:
       - main
 
+env:
+  MIRROR_URL: 'git@github.com:EpitechPromo2028/B-WEB-200-MPL-2-1-epytodo-brahim.benali.git'
+
 jobs:
     Send_to_repisitory:
         timeout-minutes: 4
