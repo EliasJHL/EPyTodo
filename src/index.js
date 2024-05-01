@@ -13,9 +13,13 @@ const jsontoken = require('jsonwebtoken');
 const dotenv = require('dotenv');
 
 const app = express();
-const port = 3000;
+const port = 5000;
 
+app.use(bodyParser.json());
 require('dotenv').config();
+
+app.use('/register', require('./middleware/auth'));
+app.use('/login', require('./middleware/auth'));
 
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);

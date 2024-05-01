@@ -6,7 +6,7 @@
 
 CREATE DATABASE IF NOT EXISTS epytodo;
 
-CREATE TABLE user
+CREATE TABLE IF NOT EXISTS user
 (
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     email VARCHAR(255) NOT NULL,
@@ -16,7 +16,7 @@ CREATE TABLE user
     created_at DATETIME
 );
 
-CREATE TABLE todo
+CREATE TABLE IF NOT EXISTS todo
 (
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(255) NOT NULL,
@@ -26,14 +26,3 @@ CREATE TABLE todo
     status ENUM('not started', 'todo', 'in progress', 'done') NOT NULL,
     user_id INT NOT NULL
 );
-
---Bonus to the front-end website - Google OAuth
---CREATE TABLE google_user
---(
---    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
---    google_id VARCHAR(255) NOT NULL,
---    email VARCHAR(255) NOT NULL,
---    name VARCHAR(255) NOT NULL,
---    firstname VARCHAR(255) NOT NULL,
---    created_at DATETIME
---);
