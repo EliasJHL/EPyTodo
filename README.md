@@ -41,3 +41,9 @@ Voilà les détails qu'on donne dans le sujet :
 Voilà la commande pour importer le .sql dans le MySQL server à partir du **epytodo.sql**
 
 ```sudo mysql -u root -p epytodo < epytodo.sql```
+
+### Lancer le serveur
+
+Pour lancer le serveur, il suffit de lancer la commande suivante :
+
+```Commande temporaire : node src/index.js```

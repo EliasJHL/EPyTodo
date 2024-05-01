@@ -9,8 +9,9 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mysql = require('mysql2');
 const bcrypt = require('bcryptjs');
-const jsontoken = require('jsonwebtoken');
 const dotenv = require('dotenv');
+const crypt = require("bcryptjs");
+const db = require("./config/db");
 
 const app = express();
 const port = 5000;
@@ -18,8 +19,11 @@ const port = 5000;
 app.use(bodyParser.json());
 require('dotenv').config();
 
-app.use('/register', require('./middleware/auth'));
-app.use('/login', require('./middleware/auth'));
+
+const { register, login } = require('./routes/auth/auth.js');
+
+app.use('/register', register);
+app.use('/login', login);
 
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
