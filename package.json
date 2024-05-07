@@ -4,7 +4,8 @@
   "description": "```\r | - - . env\r | - - package . json\r `-- src\r      | - - config\r      |       `-- db . js\r      | - - index . js\r      | - - middleware\r      |         |- - auth . js\r      |         `-- notFound . js\r      ` - - routes\r               | - - auth\r               |       `-- auth . js\r               | - - todos\r               |       |- - todos . js\r               |       `- - todos . query . js\r               ` - - user\r                    | - - user . js\r                    ` - - user . query . js\r ```",
   "main": "src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node src/index.js"
   },
   "keywords": [],
   "author": "Elias & Brahim",
@@ -25,5 +26,6 @@
   "bugs": {
     "url": "https://github.com/EpitechPromo2028/B-WEB-200-MPL-2-1-epytodo-brahim.benali/issues"
   },
-  "homepage": "https://github.com/EpitechPromo2028/B-WEB-200-MPL-2-1-epytodo-brahim.benali#readme"
+  "homepage": "https://github.com/EpitechPromo2028/B-WEB-200-MPL-2-1-epytodo-brahim.benali#readme",
+  "devDependencies": {}
 }
