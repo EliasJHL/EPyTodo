@@ -70,4 +70,29 @@ todos_id.get("/", authenticateToken, (req, res) => {
     });
 });
 
+todos_id.put("/", authenticateToken, (req, res) => {
+    const id = req.params.id;
+
+    if (!id) return res.status(400).json({msg: "Bad parameter"});
+    if (!req.body.title || !req.body.description || !req.body.status || !req.body.user_id)
+        return res.status(400).send({msg: "Bad parameter"});
+
+    if (typeof req.body.title !== "string" || typeof req.body.description !== "string" || typeof req.body.status !== "string")
+        return res.status(400).json({msg: "Bad parameter"});
+
+    const todo = {
+        title: req.body.title,
+        description: req.body.description,
+        due_time: req.body.due_time,
+        user_id: req.body.user_id,
+        status: req.body.status
+    };
+
+    db.query('UPDATE todo SET ? WHERE id = ?', [todo, id], (err, result) => {
+        if (err)
+            return res.status(500).json({msg: "Internal Server Error"});
+        return res.status(200).json({msg: "Todo updated !"});
+    });
+});
+
 module.exports = { todos, todos_id };
