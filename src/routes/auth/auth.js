@@ -20,7 +20,7 @@ register.post("/", (req, res) => {
             return res.status(500).json({msg: "Account already exists"});
         }
 
-        const hash = crypt.hashSync(req.body.password, process.env.SECRET);
+        const hash = crypt.hashSync(req.body.password, 25);
 
         const user = {
             email: req.body.email,
