@@ -21,12 +21,13 @@ require('dotenv').config();
 
 
 const { register, login } = require('./routes/auth/auth.js');
-const { user, user_id } = require('./routes/user/user.js');
+const { user, user_id, user_todos } = require('./routes/user/user.js');
 const { todos, todos_id } = require('./routes/todos/todos.js');
 
 app.use('/register', register);
 app.use('/login', login);
 app.use('/user', user);
+app.use('/user/todos', user_todos);
 app.use('/user/:IDOrEmail', user_id);
 app.use('/todos', todos);
 app.use('/todos/:id', todos_id);

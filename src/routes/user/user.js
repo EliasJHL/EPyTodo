@@ -5,6 +5,7 @@ const db = require("../../config/db");
 
 const user = express.Router();
 const user_id = express.Router({mergeParams: true});
+const user_todos = express.Router();
 
 function authenticateToken(req, res, next) {
     const authHeader = req.headers['authorization'];
@@ -114,5 +115,17 @@ user_id.put("/", authenticateToken, (req, res) => {
     });
 });
 
+user_todos.get("/", authenticateToken, (req, res) => {
+    const id = req.user.id;
 
-module.exports = { user, user_id };
+    if (!id) return res.status(500).json({msg: "Internal Server Error"});
+    db.query('SELECT * FROM todo WHERE user_id = ?', [id], (err, result) => {
+        if (err) {
+            return res.status(500).json({msg: "Internal Server Error"});
+        }
+        if (result.length <= 0) return res.status(404).json({msg: "Not Found"})
+        return res.status(200).json(result);
+    });
+});
+
+module.exports = { user, user_id, user_todos };
