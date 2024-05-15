@@ -1,3 +1,10 @@
+/*
+** A Project of the Epitech
+** A ToDo App Backend
+** A REST API for a ToDo App
+** Created on April 2024 by Elias J. HAJJAR & Branhim BENALI 
+*/
+
 const express = require("express");
 const crypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
