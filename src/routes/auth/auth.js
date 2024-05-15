@@ -57,9 +57,9 @@ login.post("/", (req, res) => {
         if (result.length <= 0)
             return res.status(500).json({msg: "Invalid Credentials"});
 
-        crypt.compare(req.body.password, result[0].password, (err, result) => {
-            if (result) {
-                const token = jwt.sign({id: req.body.id, email: req.body.email}, process.env.SECRET, {expiresIn: "1h"});
+        crypt.compare(req.body.password, result[0].password, (err, result2) => {
+            if (result2) {
+                const token = jwt.sign({id: result[0].id, email: req.body.email}, process.env.SECRET, {expiresIn: "1h"});
                 res.status(200).send({token: token});
             } else {
                 res.status(500).send({msg: "Invalid Credentials"});

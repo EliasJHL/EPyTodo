@@ -20,10 +20,10 @@ function authenticateToken(req, res, next) {
 }
 
 user.get("/", authenticateToken, (req, res) => {
-    const id = user.id;
-
+    const id = req.user.id;
+    
     if (!id) return res.status(500).json({msg: "Internal Server Error"});
-    db.query('SELECT * FROM user WHERE email = ?', [email], (err, result) => {
+    db.query('SELECT * FROM user WHERE id = ?', [id], (err, result) => {
         if (err) {
             return res.status(500).json({msg: "Internal Server Error"});
         }
@@ -49,7 +49,6 @@ user_id.get("/", authenticateToken, (req, res) => {
     } else {
         id = input;
     }
-
     if (email && id) return res.status(400).json({msg: "Bad parameter"});
     if (!email) {
         db.query('SELECT * FROM user WHERE id = ?', [id], (err, result) => {
