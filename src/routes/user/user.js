@@ -4,7 +4,6 @@ const jwt = require("jsonwebtoken");
 const db = require("../../config/db");
 
 const user = express.Router();
-const todos = express.Router();
 
 function authenticateToken(req, res, next) {
     const authHeader = req.headers['authorization'];

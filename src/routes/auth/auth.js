@@ -30,7 +30,6 @@ register.post("/", (req, res) => {
         };
 
         db.query('INSERT INTO user SET ?', user, (err, result) => {
-            console.log(err, result);
             if (err) {
                 res.status(500).json({msg: "Account already exists"});
             } else {

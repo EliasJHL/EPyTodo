@@ -22,10 +22,12 @@ require('dotenv').config();
 
 const { register, login } = require('./routes/auth/auth.js');
 const { user } = require('./routes/user/user.js');
+const { todos } = require('./routes/todos/todos.js');
 
 app.use('/register', register);
 app.use('/login', login);
 app.use('/user', user);
+app.use('/todos', todos);
 
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
