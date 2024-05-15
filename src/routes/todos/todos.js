@@ -4,6 +4,7 @@ const jwt = require("jsonwebtoken");
 const db = require("../../config/db");
 
 const todos = express.Router();
+const todos_id = express.Router({mergeParams: true});
 
 function authenticateToken(req, res, next) {
     const authHeader = req.headers['authorization'];
@@ -43,4 +44,23 @@ todos.post("/", authenticateToken, (req, res) => {
     });
 });
 
-module.exports = { todos };
+todos_id.get("/", authenticateToken, (req, res) => {
+    const id = req.params.id;
+    if (!id) return res.status(400).json({msg: "Bad parameter"});
+    db.query('SELECT * FROM todo WHERE id = ?', [id], (err, result) => {
+        if (err) {
+            return res.status(500).json({msg: "Internal Server Error"});
+        }
+        if (result.length <= 0) return res.status(404).json({msg: "Not Found"})
+        return res.status(200).json({
+            id: result[0].id,
+            title: result[0].title,
+            description: result[0].description,
+            due_time: result[0].due_time,
+            user_id: result[0].user_id,
+            status: result[0].status
+        });
+    });
+});
+
+module.exports = { todos, todos_id };
