@@ -7,7 +7,7 @@ const register = express.Router();
 const login = express.Router();
 
 register.post("/", (req, res) => {
-
+    console.log(req.body);
     if (!req.body.email || !req.body.password || !req.body.name || !req.body.firstname)
         return res.status(400).send({msg: "Bad parameter"});
 
@@ -16,11 +16,11 @@ register.post("/", (req, res) => {
         return res.status(400).json({msg: "Bad parameter"});
 
     db.query('SELECT * FROM user WHERE email = ?', req.body.email, (err, result) => {
+        console.log(result);
         if (result.length > 0) {
             return res.status(500).json({msg: "Account already exists"});
         }
-
-        const hash = crypt.hashSync(req.body.password, 25);
+        const hash = crypt.hashSync(req.body.password, 2);
 
         const user = {
             email: req.body.email,
@@ -31,6 +31,7 @@ register.post("/", (req, res) => {
         };
 
         db.query('INSERT INTO user SET ?', user, (err, result) => {
+            console.log(err, result);
             if (err) {
                 res.status(500).json({msg: "Account already exists"});
             } else {
