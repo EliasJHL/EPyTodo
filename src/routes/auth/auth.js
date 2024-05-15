@@ -16,7 +16,6 @@ register.post("/", (req, res) => {
         return res.status(400).json({msg: "Bad parameter"});
 
     db.query('SELECT * FROM user WHERE email = ?', req.body.email, (err, result) => {
-        console.log(result);
         if (result.length > 0) {
             return res.status(500).json({msg: "Account already exists"});
         }
@@ -43,21 +42,21 @@ register.post("/", (req, res) => {
 
 login.post("/", (req, res) => {
     if (!req.body.email || !req.body.password)
-        return res.status(400).send({msg: "Invalid Credentials 1"});
+        return res.status(400).send({msg: "Invalid Credentials"});
 
     if (typeof req.body.email != "string" || typeof req.body.password != "string")
-        return res.status(400).send({msg: "Invalid Credentials 10"});
+        return res.status(400).send({msg: "Invalid Credentials"});
 
     db.query('SELECT * FROM user WHERE email = ?', req.body.email, (err, result) => {
-        if (req.body.email.length === 0)
-            return req.status(500).send({msg: "Invalid Credentials 2"});
+        if (result.length <= 0)
+            return res.status(500).json({msg: "Invalid Credentials"});
 
         crypt.compare(req.body.password, result[0].password, (err, result) => {
             if (result) {
-                const token = jwt.sign({id: result[0].id}, process.env.SECRET, {expiresIn: 3600});
+                const token = jwt.sign({email: req.body.email}, process.env.SECRET, {expiresIn: "1h"});
                 res.status(200).send({token: token});
             } else {
-                res.status(500).send({msg: "Invalid Credentials 3"});
+                res.status(500).send({msg: "Invalid Credentials"});
             }
         });
     });
