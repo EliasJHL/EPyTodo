@@ -34,7 +34,6 @@ todos.post("/", authenticateToken, (req, res) => {
     };
 
     db.query('INSERT INTO todo SET ?', todo, (err, result) => {
-        console.log(result.insertId);
         if (err) {
             res.status(500).json({msg: "Internal Server Error"});
         } else {
