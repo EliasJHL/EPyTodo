@@ -95,4 +95,17 @@ todos_id.put("/", authenticateToken, (req, res) => {
     });
 });
 
+todos_id.delete("/", authenticateToken, (req, res) => {
+    const id = req.params.id;
+
+    if (!id) return res.status(400).json({msg: "Bad parameter"});
+    if (isNaN(id)) return res.status(400).json({msg: "Bad parameter"});
+
+    db.query('DELETE FROM todo WHERE id = ?', [id], (err, result) => {
+        if (err)
+            return res.status(500).json({msg: "Internal Server Error"});
+        return res.status(200).json({msg: `Successfully deleted record number : ${id}`});
+    });
+});
+
 module.exports = { todos, todos_id };
