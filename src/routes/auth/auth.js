@@ -14,7 +14,6 @@ const register = express.Router();
 const login = express.Router();
 
 register.post("/", (req, res) => {
-    console.log(req.body);
     if (!req.body.email || !req.body.password || !req.body.name || !req.body.firstname)
         return res.status(400).send({msg: "Bad parameter"});
 
@@ -40,7 +39,8 @@ register.post("/", (req, res) => {
             if (err) {
                 res.status(500).json({msg: "Account already exists"});
             } else {
-                res.status(200).send({token: result.insertId});
+                const token = jwt.sign({id: result.insertId, email: req.body.email}, process.env.SECRET, {expiresIn: "1h"});
+                res.status(200).send({token: token});
             }
         });
     });
