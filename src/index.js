@@ -14,7 +14,7 @@ const crypt = require("bcryptjs");
 const db = require("./config/db");
 
 const app = express();
-const port = 5000;
+const port = process.env.PORT;
 
 app.use(bodyParser.json());
 require('dotenv').config();
