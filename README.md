@@ -44,6 +44,10 @@ Voilà la commande pour importer le .sql dans le MySQL server à partir du **epy
 
 ### Lancer le serveur
 
+```npm start```
+
+### Lancer le serveur
+
 Pour lancer le serveur, il suffit de lancer la commande suivante :
 
 ```Commande temporaire : node src/index.js```
