@@ -1,4 +1,4 @@
-# Welcome !
+# Welcome ! - Outdated
 
 ## Détails du projet
 
